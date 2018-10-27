@@ -20,7 +20,7 @@ class Mario():
         self.rect = self.image.get_rect()
 
         # 将Mario放在屏幕底部中央
-        self.rect.centerx = 0 #self.screen_rect.centerx - 160
+        self.rect.centerx = 50 #self.screen_rect.centerx - 160
         self.rect.bottom = self.screen_rect.bottom - 24
 
         # 在Mario的属性center中存储小数值
@@ -88,26 +88,27 @@ class Mario():
             self.center -= self.ai_settings.mario_speed_factor
 
         if self.moving_up:
-            if self.moving_right and self.rect.bottom > self.screen_rect.bottom - 64:
+            if self.moving_right and self.rect.bottom > self.screen_rect.bottom - 88:
                 self.image = self.small_normal_frames[0][1]
                 self.center += self.ai_settings.mario_speed_factor
                 self.rect.bottom -= self.gravity
 
-            elif self.moving_left and self.rect.bottom > self.screen_rect.bottom - 64:
+            elif self.moving_left and self.rect.bottom > self.screen_rect.bottom - 88:
                 self.image = self.small_normal_frames[1][1]
                 self.center -= self.ai_settings.mario_speed_factor
                 self.rect.bottom -= self.gravity
 
-            elif self.rect.bottom >= self.screen_rect.bottom - 64:
+            elif self.rect.bottom >= self.screen_rect.bottom - 88:
                 self.image = self.small_normal_frames[0][0]
                 self.rect.bottom -= self.gravity
 
         if self.moving_down:
             self.falling()
         # 根据self.center更新rect对象
-        self.rect.centerx = self.center
+        # self.rect.centerx = self.center
 
-        return self.rect.centerx
+        return self.center
+        # return self.rect.centerx
 
     def falling(self):
         """Called when Mario is in a FALL state"""

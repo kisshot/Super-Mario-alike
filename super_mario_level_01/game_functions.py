@@ -45,7 +45,7 @@ def check_events(ai_settings, screen, mario):
                 mario.facing_right = True
 
 
-def update_screen(ai_settings, screen, mario, centerx):
+def update_screen(ai_settings, screen, mario, enemy, centerx):
     """更新屏幕上的图像，并切换到新屏幕"""
     # 背景图片
     background_image_filename = 'resources/images/level_1.png'
@@ -55,12 +55,15 @@ def update_screen(ai_settings, screen, mario, centerx):
 
     # 将背景图画上去
 
-    screen.blit(background, (-centerx * 15.8 , 0))
+    screen.blit(background, (-centerx, 0))
 
     # screen.fill(ai_settings.bg_color)
 
-
+    enemy.blitme(centerx)
     mario.blitme()
+
+
+
     # 让最近绘制的屏幕可见
     pygame.display.update()
 

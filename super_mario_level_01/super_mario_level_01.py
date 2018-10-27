@@ -2,6 +2,7 @@ import pygame
 from settings import Settings
 from mario import Mario
 import game_functions as gf
+from enemies import Enemy
 
 
 
@@ -26,8 +27,8 @@ def run_game():
     # 放置Mario
     mario = Mario(ai_settings, screen)
 
-
-
+    # 敌人
+    enemy = Enemy(ai_settings, screen)
 
 
     while True:
@@ -39,8 +40,12 @@ def run_game():
         # screen.blit(background, (0, 577))
 
         centerx = mario.update()
+        # print(centerx)
 
-        gf.update_screen(ai_settings, screen, mario, centerx)
+        enemy.update()
+
+
+        gf.update_screen(ai_settings, screen, mario, enemy, centerx)
 
 
 
